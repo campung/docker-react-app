@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
   CButton,
@@ -9,11 +9,17 @@ import {
   CRow,
   CWidgetSimple,
   CDataTable,
+  CModal,
+  CModalHeader,
+  CModalTitle,
+  CModalBody,
+  CModalFooter,
 } from "@coreui/react";
 import usersData from "../../users/UsersData"; //테이블 더미 데이터 추후에 수정해야함
 
 const OrderList = () => {
-  // const fields = ["name", "registered", "role", "status"];
+  const [info, setInfo] = useState(false);
+  const [btnId, setBtnId] = useState(0);
   const fields = [
     "id",
     "상품명",
@@ -23,22 +29,15 @@ const OrderList = () => {
     "결제금액",
     "주문상태",
     "수령방법",
-    "status",
+    "",
   ];
-  const getBadge = (status) => {
-    switch (status) {
-      case "Active":
-        return "success";
-      case "Inactive":
-        return "secondary";
-      case "Pending":
-        return "warning";
-      case "Banned":
-        return "danger";
-      default:
-        return "primary";
-    }
+
+  const onBtn = (item) => {
+    console.log(item);
+    setBtnId(item);
+    setInfo(!info);
   };
+
   return (
     <>
       <CCard>
@@ -76,21 +75,39 @@ const OrderList = () => {
             itemsPerPage={15}
             pagination
             scopedSlots={{
-              status: (item) => (
+              "": (item) => (
                 <td>
                   {/* <CBadge color={getBadge(item.status)}>{item.status}</CBadge> */}
-                  <CButton
-                    block
-                    variant="outline"
-                    color="danger"
-                    // style={{ width: "50%" }}
-                  >
+                  <CButton color="info" onClick={() => onBtn(item.id)}>
                     자세히
                   </CButton>
                 </td>
               ),
             }}
           />
+          {btnId && (
+            <CModal show={info} onClose={() => setInfo(!info)} color="info">
+              <CModalHeader closeButton>
+                <CModalTitle>배송업체 정보</CModalTitle>
+              </CModalHeader>
+              <CModalBody>
+                <span>배송입력</span>&nbsp;&nbsp;
+                <input placeholder="배송업체 혹은 배송지 이름 입력" />
+                <br />
+                <br />
+                <span>연락처</span>&nbsp;&nbsp;{" "}
+                <input placeholder="숫자만 입력" />
+              </CModalBody>
+              <CModalFooter>
+                <CButton color="secondary" onClick={() => setInfo(!info)}>
+                  취소
+                </CButton>
+                <CButton color="info" onClick={() => setInfo(!info)}>
+                  등록
+                </CButton>{" "}
+              </CModalFooter>
+            </CModal>
+          )}
         </CCardBody>
       </CCard>
     </>
