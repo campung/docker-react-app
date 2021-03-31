@@ -39,7 +39,9 @@ const OrderList = () => {
   const onEntering = () => {};
   const onEntered = () => {};
   const onExiting = () => {};
-  const onExited = () => {};
+  const onExited = () => {
+    setCollapse(!collapse);
+  };
 
   return (
     <>
@@ -82,7 +84,6 @@ const OrderList = () => {
             scopedSlots={{
               "": (item) => (
                 <td>
-                  {/* <CBadge color={getBadge(item.status)}>{item.status}</CBadge> */}
                   <CButton color="info" onClick={() => onBtn(item.id)}>
                     자세히
                   </CButton>
@@ -109,7 +110,11 @@ const OrderList = () => {
                   <Descriptions
                     bordered
                     title="상품 주문 정보"
-                    extra={<Button type="primary"></Button>}
+                    extra={
+                      <Button type="primary" onClick={onExited}>
+                        접기
+                      </Button>
+                    }
                   >
                     <Descriptions.Item label="결제 일시">
                       2021-02-02 14:02
