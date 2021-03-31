@@ -15,27 +15,9 @@ const Collapses = React.lazy(() =>
   import("./views/product/collapses/Collapses")
 );
 const BasicForms = React.lazy(() => import("./views/product/forms/BasicForms"));
-
-const Jumbotrons = React.lazy(() =>
-  import("./views/product/jumbotrons/Jumbotrons")
-);
-const ListGroups = React.lazy(() =>
-  import("./views/product/list-groups/ListGroups")
-);
-const Navbars = React.lazy(() => import("./views/product/navbars/Navbars"));
-const Navs = React.lazy(() => import("./views/product/navs/Navs"));
 const Paginations = React.lazy(() =>
   import("./views/product/paginations/Pagnations")
 );
-const Popovers = React.lazy(() => import("./views/product/popovers/Popovers"));
-const ProgressBar = React.lazy(() =>
-  import("./views/product/progress-bar/ProgressBar")
-);
-const Switches = React.lazy(() => import("./views/product/switches/Switches"));
-
-const Tabs = React.lazy(() => import("./views/product/tabs/Tabs"));
-const Tooltips = React.lazy(() => import("./views/product/tooltips/Tooltips"));
-
 const Review = React.lazy(() => import("./views/review/review/Review"));
 const Charts = React.lazy(() => import("./views/charts/Charts"));
 const Dashboard = React.lazy(() => import("./views/dashboard/Dashboard"));
@@ -76,17 +58,9 @@ const routes = [
   },
   { path: "/base/collapses", name: "Collapse", component: Collapses },
   { path: "/base/forms", name: "Forms", component: BasicForms },
-  { path: "/base/jumbotrons", name: "Jumbotrons", component: Jumbotrons },
-  { path: "/base/list-groups", name: "List Groups", component: ListGroups },
-  { path: "/base/navbars", name: "Navbars", component: Navbars },
-  { path: "/base/navs", name: "Navs", component: Navs },
   { path: "/base/paginations", name: "Paginations", component: Paginations },
-  { path: "/base/popovers", name: "Popovers", component: Popovers },
-  { path: "/base/progress-bar", name: "Progress Bar", component: ProgressBar },
-  { path: "/base/switches", name: "Switches", component: Switches },
   { path: "/base/tables", name: "Tables", component: Tables },
-  { path: "/base/tabs", name: "Tabs", component: Tabs },
-  { path: "/base/tooltips", name: "Tooltips", component: Tooltips },
+
   { path: "/review", name: "Review", component: Review, exact: true },
 
   { path: "/charts", name: "Charts", component: Charts },

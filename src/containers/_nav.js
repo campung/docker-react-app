@@ -66,26 +66,7 @@ const _nav = [
         name: "Forms",
         to: "/base/forms",
       },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Jumbotron",
-        to: "/base/jumbotrons",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "List group",
-        to: "/base/list-groups",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Navs",
-        to: "/base/navs",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Navbars",
-        to: "/base/navbars",
-      },
+
       {
         _tag: "CSidebarNavItem",
         name: "Pagination",
@@ -93,33 +74,8 @@ const _nav = [
       },
       {
         _tag: "CSidebarNavItem",
-        name: "Popovers",
-        to: "/base/popovers",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Progress",
-        to: "/base/progress-bar",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Switches",
-        to: "/base/switches",
-      },
-      {
-        _tag: "CSidebarNavItem",
         name: "Tables",
         to: "/base/tables",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Tabs",
-        to: "/base/tabs",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Tooltips",
-        to: "/base/tooltips",
       },
     ],
   },

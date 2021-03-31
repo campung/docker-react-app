@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import "antd/dist/antd.css";
+import { Descriptions, Button } from "antd";
 
 import {
   CButton,
@@ -9,17 +11,14 @@ import {
   CRow,
   CWidgetSimple,
   CDataTable,
-  CModal,
-  CModalHeader,
-  CModalTitle,
-  CModalBody,
-  CModalFooter,
+  CCollapse,
 } from "@coreui/react";
 import usersData from "../../users/UsersData"; //테이블 더미 데이터 추후에 수정해야함
 
 const OrderList = () => {
-  const [info, setInfo] = useState(false);
-  const [btnId, setBtnId] = useState(0);
+  const [collapse, setCollapse] = useState(false);
+
+  const [btnId, setBtnId] = useState(null);
   const fields = [
     "id",
     "상품명",
@@ -33,15 +32,21 @@ const OrderList = () => {
   ];
 
   const onBtn = (item) => {
-    console.log(item);
     setBtnId(item);
-    setInfo(!info);
+    setCollapse(!collapse);
   };
+
+  const onEntering = () => {};
+  const onEntered = () => {};
+  const onExiting = () => {};
+  const onExited = () => {};
 
   return (
     <>
       <CCard>
-        <CCardHeader>주문리스트</CCardHeader>
+        <CCardHeader>
+          <h1>주문리스트</h1>
+        </CCardHeader>
         <CCardBody>
           <CRow>
             <CCol sm="4" lg="2">
@@ -85,28 +90,108 @@ const OrderList = () => {
               ),
             }}
           />
+          <hr />
+          <hr />
           {btnId && (
-            <CModal show={info} onClose={() => setInfo(!info)} color="info">
-              <CModalHeader closeButton>
-                <CModalTitle>배송업체 정보</CModalTitle>
-              </CModalHeader>
-              <CModalBody>
-                <span>배송입력</span>&nbsp;&nbsp;
-                <input placeholder="배송업체 혹은 배송지 이름 입력" />
-                <br />
-                <br />
-                <span>연락처</span>&nbsp;&nbsp;{" "}
-                <input placeholder="숫자만 입력" />
-              </CModalBody>
-              <CModalFooter>
-                <CButton color="secondary" onClick={() => setInfo(!info)}>
-                  취소
+            <CCard>
+              <CCollapse
+                show={collapse}
+                onEntering={onEntering}
+                onEntered={onEntered}
+                onExiting={onExiting}
+                onExited={onExited}
+              >
+                <CCardHeader>
+                  <h1>주문 정보 자세히</h1>
+                </CCardHeader>
+                <CCardBody>
+                  {/* 상품 주문정보 */}
+                  <Descriptions
+                    bordered
+                    title="상품 주문 정보"
+                    extra={<Button type="primary"></Button>}
+                  >
+                    <Descriptions.Item label="결제 일시">
+                      2021-02-02 14:02
+                    </Descriptions.Item>
+                    <Descriptions.Item label="주문 상태">
+                      주문완료
+                    </Descriptions.Item>
+                    <br />
+
+                    <Descriptions.Item label="주문 상품">
+                      올리브 옐로우 따듯한 봄바람 꽃다발
+                    </Descriptions.Item>
+                    <Descriptions.Item label="주문 수량">1</Descriptions.Item>
+                    <br />
+                    <Descriptions.Item label="수령 방법">
+                      퀵 배송
+                    </Descriptions.Item>
+                  </Descriptions>
+                  <br />
+                  {/* 주문자 정보 */}
+                  <Descriptions
+                    bordered
+                    title="주문자 정보"
+                    extra={<Button type="primary"></Button>}
+                  >
+                    <Descriptions.Item label="이름">홍길동</Descriptions.Item>
+                    <Descriptions.Item label="연락처">
+                      010-1234-5678
+                    </Descriptions.Item>
+                    <br />
+
+                    <Descriptions.Item label="주소">
+                      서울시 마포구 신수동 120 00건물 5층 123호
+                    </Descriptions.Item>
+                  </Descriptions>
+                  <br />
+                  {/* 받는 분(배송지) 정보 */}
+                  <Descriptions
+                    bordered
+                    title="받는 분(배송지) 정보"
+                    extra={<Button type="primary"></Button>}
+                  >
+                    <Descriptions.Item label="이름">홍길동</Descriptions.Item>
+                    <Descriptions.Item label="연락처">
+                      010-1234-5678
+                    </Descriptions.Item>
+                    <br />
+
+                    <Descriptions.Item label="주소">
+                      서울시 마포구 신수동 120 00건물 5층 123호
+                    </Descriptions.Item>
+                  </Descriptions>
+                  <br />
+
+                  {/* 결제 정보 */}
+                  <Descriptions
+                    bordered
+                    title="결제 정보"
+                    extra={<Button type="primary"></Button>}
+                  >
+                    <Descriptions.Item label="상품 금액">
+                      25,000원
+                    </Descriptions.Item>
+                    <Descriptions.Item label="할인 금액">0원</Descriptions.Item>
+                    <Descriptions.Item label="배송비">
+                      10,000원
+                    </Descriptions.Item>
+                    <Descriptions.Item label="최종 결제 금액">
+                      35,000원
+                    </Descriptions.Item>
+                    <Descriptions.Item label="결제 카드">
+                      신용카드(국민)
+                    </Descriptions.Item>
+                  </Descriptions>
+                </CCardBody>
+              </CCollapse>
+              {/* <CCardFooter>
+                <CButton color="primary" onClick={toggle} className={"mb-1"}>
+                  Toggle Collapse
                 </CButton>
-                <CButton color="info" onClick={() => setInfo(!info)}>
-                  등록
-                </CButton>{" "}
-              </CModalFooter>
-            </CModal>
+              </CCardFooter> */}
+            </CCard>
           )}
         </CCardBody>
       </CCard>

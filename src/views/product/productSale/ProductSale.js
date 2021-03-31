@@ -21,22 +21,9 @@ const ProductSale = () => {
     "결제금액",
     "주문상태",
     "수령방법",
-    "status",
+    "",
   ];
-  const getBadge = (status) => {
-    switch (status) {
-      case "Active":
-        return "success";
-      case "Inactive":
-        return "secondary";
-      case "Pending":
-        return "warning";
-      case "Banned":
-        return "danger";
-      default:
-        return "primary";
-    }
-  };
+
   return (
     <CRow>
       <CCol xs="12">
@@ -52,17 +39,9 @@ const ProductSale = () => {
               itemsPerPage={15}
               pagination
               scopedSlots={{
-                status: (item) => (
+                "": (item) => (
                   <td>
-                    {/* <CBadge color={getBadge(item.status)}>{item.status}</CBadge> */}
-                    <CButton
-                      block
-                      variant="outline"
-                      color="danger"
-                      // style={{ width: "50%" }}
-                    >
-                      수정
-                    </CButton>
+                    <CButton color="info">수정</CButton>
                   </td>
                 ),
               }}
