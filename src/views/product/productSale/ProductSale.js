@@ -11,13 +11,16 @@ import {
   CButton,
   CCollapse,
   CImg,
+  CCardFooter
 } from "@coreui/react";
 import Dropzone from "react-dropzone";
 import { PlusOutlined } from "@ant-design/icons";
 import usersData from "../../users/UsersData";
+import {EditableTagGroup} from './EditableTagGroup';
 
 const ProductSale = () => {
   const [collapse, setCollapse] = useState(false);
+
   const { Option, OptGroup } = Select;
   const { TextArea } = Input;
 
@@ -33,6 +36,9 @@ const ProductSale = () => {
     "수령방법",
     "",
   ];
+
+  
+
   const onChange = () => {
     console.log(1);
   };
@@ -198,14 +204,47 @@ const ProductSale = () => {
                         <Checkbox onChange={onChange}>매장방문</Checkbox>
                         <Checkbox onChange={onChange}>퀵 서비스</Checkbox>
                       </Descriptions.Item>
+                      <br/>
+                      <br/>                      
+                      <Descriptions.Item label="배송 옵션">
+                        <section>
+                          <div style={{display:'flex', justifyContent:"space-between"}}>
+                            <span>퀵 서비스 선택 시에만 적용합니다.</span>
+                            <Button type="primary">+ 옵션 추가</Button>
+                          </div>
+                        </section>
+                        <br/>
+                        <section>
+                          <div style={{display:'flex', justifyContent:"space-between"}}>
+                            <span>옵션1</span>
+                            <Input style={{ width: '40%' }} defaultValue="문래동 관내 배송"/>
+                            <span>추가금액</span>
+                            <Input style={{ width: '40%' }} defaultValue="5,000"/>
+                            <Button type="danger">삭제</Button>
+                          </div>
+                        </section>
+                      </Descriptions.Item>
+                      <br/>
+                      <br/>                      
+                      <Descriptions.Item label="키워드 등록">
+                      {/* <Input style={{ width: '20%' }} onPressEnter={handleInputConfirm} /> <Button type="primary">추가</Button><br/> */}
+                      <EditableTagGroup/><br/>
+                      <span style={{color:"gray" , fontSize:"10px"}}>띄어쓰기, 문장, 기호, 특수문자를 사용한 등록이 불가능합니다.</span>
+                      </Descriptions.Item>
                     </Descriptions>
+                    <br/>
+                    <div style={{}}>
+                    <CButton color="info"  className={"mb-1"}>
+                  취소
+                </CButton>&nbsp;&nbsp;&nbsp;
+                <CButton color="danger"  className={"mb-1"}>
+                  저장
+                </CButton>
+                </div>
                   </CCardBody>
                 </CCollapse>
-                {/* <CCardFooter>
-                <CButton color="primary" onClick={toggle} className={"mb-1"}>
-                  Toggle Collapse
-                </CButton>
-              </CCardFooter> */}
+
+                
               </CCard>
             )}
           </CCardBody>
