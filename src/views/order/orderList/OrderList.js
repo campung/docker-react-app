@@ -36,9 +36,6 @@ const OrderList = () => {
     setCollapse(!collapse);
   };
 
-  const onEntering = () => {};
-  const onEntered = () => {};
-  const onExiting = () => {};
   const onExited = () => {
     setCollapse(!collapse);
   };
@@ -79,7 +76,7 @@ const OrderList = () => {
             style={{ border: "1px solid red" }}
             items={usersData}
             fields={fields}
-            itemsPerPage={15}
+            itemsPerPage={7}
             pagination
             scopedSlots={{
               "": (item) => (
@@ -95,13 +92,7 @@ const OrderList = () => {
           <hr />
           {btnId && (
             <CCard>
-              <CCollapse
-                show={collapse}
-                onEntering={onEntering}
-                onEntered={onEntered}
-                onExiting={onExiting}
-                onExited={onExited}
-              >
+              <CCollapse show={collapse}>
                 <CCardHeader>
                   <h1>주문 정보 자세히</h1>
                 </CCardHeader>

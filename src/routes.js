@@ -15,9 +15,6 @@ const Collapses = React.lazy(() =>
   import("./views/product/collapses/Collapses")
 );
 const BasicForms = React.lazy(() => import("./views/product/forms/BasicForms"));
-const Paginations = React.lazy(() =>
-  import("./views/product/paginations/Pagnations")
-);
 const Review = React.lazy(() => import("./views/review/review/Review"));
 const Charts = React.lazy(() => import("./views/charts/Charts"));
 const Dashboard = React.lazy(() => import("./views/dashboard/Dashboard"));
@@ -58,7 +55,7 @@ const routes = [
   },
   { path: "/base/collapses", name: "Collapse", component: Collapses },
   { path: "/base/forms", name: "Forms", component: BasicForms },
-  { path: "/base/paginations", name: "Paginations", component: Paginations },
+
   { path: "/base/tables", name: "Tables", component: Tables },
 
   { path: "/review", name: "Review", component: Review, exact: true },
