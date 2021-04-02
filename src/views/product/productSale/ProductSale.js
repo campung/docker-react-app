@@ -19,6 +19,7 @@ import { EditableTagGroup } from "./EditableTagGroup";
 
 const ProductSale = () => {
   const [collapse, setCollapse] = useState(false);
+  const [num, setNum] = useState(null);
 
   const { Option, OptGroup } = Select;
   const { TextArea } = Input;
@@ -62,6 +63,11 @@ const ProductSale = () => {
     formData.append("file", files[0]);
 
     //axios
+  };
+
+  const onAdd = () => {
+    let number = 1;
+    setNum(number++);
   };
 
   return (
@@ -214,7 +220,9 @@ const ProductSale = () => {
                             }}
                           >
                             <span>퀵 서비스 선택 시에만 적용합니다.</span>
-                            <Button type="primary">+ 옵션 추가</Button>
+                            <Button type="primary" onClick={onAdd}>
+                              + 옵션 추가
+                            </Button>
                           </div>
                         </section>
                         <br />
@@ -238,6 +246,29 @@ const ProductSale = () => {
                             <Button type="danger">삭제</Button>
                           </div>
                         </section>
+                        <br />
+                        {num && (
+                          <section>
+                            <div
+                              style={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                              }}
+                            >
+                              <span>옵션2</span>
+                              <Input
+                                style={{ width: "40%" }}
+                                defaultValue="문래동 관내 배송"
+                              />
+                              <span>추가금액</span>
+                              <Input
+                                style={{ width: "40%" }}
+                                defaultValue="5,000"
+                              />
+                              <Button type="danger">삭제</Button>
+                            </div>
+                          </section>
+                        )}
                       </Descriptions.Item>
                       <br />
                       <br />

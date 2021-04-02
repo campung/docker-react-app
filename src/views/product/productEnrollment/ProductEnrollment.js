@@ -137,13 +137,11 @@ const ProductEnrollment = () => {
                     justifyContent: "space-between",
                   }}
                 >
-                  <section>
-                    <span>옵션1</span>
-                    <Input style={{ width: "40%" }} defaultValue="" />
-                    <span>추가금액</span>
-                    <Input style={{ width: "40%" }} defaultValue="" />
-                    <Button type="danger">삭제</Button>
-                  </section>
+                  <span>옵션1</span>
+                  <Input style={{ width: "40%" }} defaultValue="" />
+                  <span>추가금액</span>
+                  <Input style={{ width: "40%" }} defaultValue="" />
+                  <Button type="danger">삭제</Button>
                 </div>
               </section>
             </Descriptions.Item>
