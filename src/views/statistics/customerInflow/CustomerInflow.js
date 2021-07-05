@@ -1,13 +1,6 @@
 import React from "react";
-import { CCard, CCardBody, CCardHeader, CRow, CCardGroup } from "@coreui/react";
-import {
-  CChartBar,
-  CChartLine,
-  CChartDoughnut,
-  CChartRadar,
-  CChartPie,
-  CChartPolarArea,
-} from "@coreui/react-chartjs";
+import { CCard, CCardBody, CCardHeader, CCardGroup } from "@coreui/react";
+import { CChartLine } from "@coreui/react-chartjs";
 
 const CustomerInflow = () => {
   return (

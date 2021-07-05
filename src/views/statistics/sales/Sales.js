@@ -8,7 +8,7 @@ import {
   CDataTable,
 } from "@coreui/react";
 import { CChartBar } from "@coreui/react-chartjs";
-import usersData from "../../users/UsersData";
+
 
 const Sales = () => {
   const fields = [
@@ -51,7 +51,7 @@ const Sales = () => {
 
           <CDataTable
             style={{ border: "1px solid red" }}
-            items={usersData}
+            // items={usersData}
             fields={fields}
             itemsPerPage={15}
             pagination

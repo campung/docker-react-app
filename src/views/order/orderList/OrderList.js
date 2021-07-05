@@ -13,7 +13,6 @@ import {
   CDataTable,
   CCollapse,
 } from "@coreui/react";
-import usersData from "../../users/UsersData"; //테이블 더미 데이터 추후에 수정해야함
 
 const OrderList = () => {
   const [collapse, setCollapse] = useState(false);
@@ -74,7 +73,7 @@ const OrderList = () => {
         <CCardBody>
           <CDataTable
             style={{ border: "1px solid red" }}
-            items={usersData}
+            // items={usersData}
             fields={fields}
             itemsPerPage={7}
             pagination

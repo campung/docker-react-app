@@ -11,7 +11,7 @@ import {
   CModalBody,
   CModalFooter,
 } from "@coreui/react";
-import usersData from "../../users/UsersData"; //테이블 더미 데이터 추후에 수정해야함
+
 
 const OrderSendInfomation = () => {
   const [info, setInfo] = useState(false);
@@ -32,7 +32,7 @@ const OrderSendInfomation = () => {
         <CCardBody>
           <CDataTable
             style={{ border: "1px solid red" }}
-            items={usersData}
+            // items={usersData}
             fields={fields}
             itemsPerPage={15}
             pagination

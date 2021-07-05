@@ -8,7 +8,7 @@ import {
   CDataTable,
   CButton,
 } from "@coreui/react";
-import usersData from "../../users/UsersData";
+
 
 const Cards = () => {
   const fields = [
@@ -46,7 +46,7 @@ const Cards = () => {
           <CCardBody>
             <CDataTable
               style={{ border: "1px solid red" }}
-              items={usersData}
+              // items={usersData}
               fields={fields}
               itemsPerPage={15}
               pagination

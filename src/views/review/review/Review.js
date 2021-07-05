@@ -1,152 +1,115 @@
 import React, { useState } from "react";
-import {
-  CCard,
-  CCardBody,
-  CCardHeader,
-  CCol,
-  CRow,
-  CDataTable,
-  CButton,
-  CCollapse,
-} from "@coreui/react";
-import { Input } from "antd";
-import usersData from "../../users/UsersData";
+import { CCard, CCardBody, CCardHeader, CCol, CRow } from "@coreui/react";
+import { Table, Button } from "antd";
+import { useSelector } from "react-redux";
+import "antd/dist/antd.css";
 
 const Review = () => {
-  const [collapse, setCollapse] = useState(false);
-  const [btnId, setBtnId] = useState(null);
-  const [details, setDetails] = useState([]);
-  const { TextArea } = Input;
-  const fields = [
-    "id",
-    "작성일자",
-    "상품명",
-    "작성자",
-    "별점",
-    "사진",
-    "내용",
+  const user = useSelector((state) => state.user);
+
+  // const columns = [
+  //   { title: "NO.", dataIndex: "id", key: "id" },
+  //   { title: "작성일자", dataIndex: "title", key: "title" },
+  //   { title: "상품명", dataIndex: "cost_price", key: "cost_price" },
+  //   { title: "작성자", dataIndex: "sale_price", key: "sale_price" },
+  //   { title: "별점", dataIndex: "favorite_count", key: "favorite_count" },
+  //   { title: "사진", dataIndex: "favorite_count", key: "favorite_count" },
+  //   { title: "내용", dataIndex: "favorite_count", key: "favorite_count" },
+  //   {
+  //     title: "",
+  //     dataIndex: "",
+  //     key: "x",
+  //     render: () => <Button>답글</Button>,
+  //   },
+  // ];
+
+  const columns = [
+    { title: "Name", dataIndex: "name", key: "name" },
+    { title: "Age", dataIndex: "age", key: "age" },
+    { title: "Address", dataIndex: "address", key: "address" },
     {
-      key: "show_details",
-      label: "",
-      _style: { width: "10" },
-      sorter: false,
-      filter: false,
+      title: "Action",
+      dataIndex: "",
+      key: "x",
+      render: () => <a>Delete</a>,
     },
   ];
 
-  const onBtn = (item) => {
-    setBtnId(item);
-    setCollapse(!collapse);
-  };
-
-  const onExited = () => {
-    setCollapse(!collapse);
-  };
-  const toggleDetails = (index) => {
-    console.log(11, details);
-    const position = details.indexOf(index);
-    let newDetails = details.slice();
-    if (position !== -1) {
-      newDetails.splice(position, 1);
-    } else {
-      newDetails = [...details, index];
-    }
-    console.log(newDetails);
-    setDetails(newDetails);
-  };
+  const data = [
+    {
+      key: 1,
+      name: "John Brown",
+      age: 32,
+      address: "New York No. 1 Lake Park",
+      description:
+        "My name is John Brown, I am 32 years old, living in New York No. 1 Lake Park.",
+    },
+    {
+      key: 2,
+      name: "Jim Green",
+      age: 42,
+      address: "London No. 1 Lake Park",
+      description:
+        "My name is Jim Green, I am 42 years old, living in London No. 1 Lake Park.",
+    },
+    {
+      key: 3,
+      name: "Not Expandable",
+      age: 29,
+      address: "Jiangsu No. 1 Lake Park",
+      description: "This not expandable",
+    },
+    {
+      key: 4,
+      name: "Joe Black",
+      age: 32,
+      address: "Sidney No. 1 Lake Park",
+      description:
+        "My name is Joe Black, I am 32 years old, living in Sidney No. 1 Lake Park.",
+    },
+  ];
 
   return (
     <CRow>
       <CCol xs="12">
         <CCard>
           <CCardHeader>
-            <h1>리뷰</h1>
+            <h1>판매중</h1>
           </CCardHeader>
           <CCardBody>
-            <CDataTable
-              items={usersData}
-              fields={fields}
-              itemsPerPage={15}
-              pagination
-              scopedSlots={{
-                // "": (item) => (
-                //   <td>
-                //     <CButton color="info" onClick={() => onBtn(item.id)}>
-                //       답글
-                //     </CButton>
-                //     <CCol>
-                //       <CCollapse show={collapse}>
-                //         <CCard>
-                //           <CCardBody>
-                //             Anim pariatur cliche reprehenderit, enim eiusmod
-                //             high life accusamus terry richardson ad squid.Nihil
-                //             anim keffiyeh helvetica, craft beer labore wes
-                //             anderson cred nesciunt sapiente ea proident.
-                //           </CCardBody>
-                //         </CCard>
-                //       </CCollapse>
-                //     </CCol>
-                //   </td>
-                // ),
-                show_details: (item, index) => {
-                  return (
-                    <td className="py-1">
-                      <CButton
-                        color="info"
-                        size="sm"
-                        onClick={() => {
-                          toggleDetails(index);
-                        }}
-                      >
-                        {details.includes(index) ? "접기" : "답글"}
-                      </CButton>
-                    </td>
-                  );
+            {/* <Table
+              columns={columns}
+              expandable={{
+                expandedRowRender: (record) => {
+                  console.log(9, record.id);
+                  <p style={{ margin: 0 }}>{record.id}</p>;
                 },
-                details: (item, index) => {
-                  return (
-                    <CCollapse show={details.includes(index)}>
-                      <CCardBody>
-                        <h4>{item.username}</h4>
-                        <p className="text-muted">
-                          {/* OO플라워 {item.registered} */}
-                          OO플라워 <span>2021-09-07</span>
-                        </p>
-                        <p>감사합니다~</p>
-                        <div
-                          style={{
-                            display: "flex",
-                            alignItems: "flex-end",
-                          }}
-                        >
-                          <div>
-                            <TextArea
-                              rows={4}
-                              cols={100}
-                              showCount
-                              placeholder="답글 입력"
-                              maxLength="1000"
-                              size="large"
-                              // onChange={onChange}
-                            />
-                          </div>
-                          <div>
-                            <CButton
-                              size="sm"
-                              color="danger"
-                              className="ml-1"
-                              style={{ marginBottom: "5px" }}
-                            >
-                              등록
-                            </CButton>
-                          </div>
-                        </div>
-                      </CCardBody>
-                    </CCollapse>
-                  );
-                },
+                rowExpandable: (record) => record.id !== "Not Expandable",
               }}
+              dataSource={data}
+            /> */}
+            <Table
+              columns={columns}
+              expandable={{
+                expandedRowRender: (record) => (
+                  // <p style={{ margin: 0 }}>{record.description}</p>
+                  <>
+                    <p>땡땡 플라워</p>
+                    <span>내용입니다.</span>
+                    <br />
+                    <textarea /> <button>등록</button>
+                  </>
+                ),
+                rowExpandable: (record) => record.name !== "Not Expandable",
+              }}
+              dataSource={data}
             />
+
+            {/* <Table
+              columns={columns}
+              // dataSource={products}
+              scroll={{ x: 700 }}
+            /> */}
           </CCardBody>
         </CCard>
       </CCol>

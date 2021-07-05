@@ -30,8 +30,6 @@ const _nav = [
     icon: "cil-pencil",
   },
 
-  //ㅁㄴㅇㅁㄴㅇㄴㅁㅇㄴㅁㅇ
-
   {
     _tag: "CSidebarNavTitle",
   },
@@ -46,36 +44,15 @@ const _nav = [
         name: "판매중",
         to: "/product/productSale",
       },
-      {
-        _tag: "CSidebarNavItem",
-        name: "판매일시 중지",
-        to: "/product/productPause",
-      },
+      // {
+      //   _tag: "CSidebarNavItem",
+      //   name: "판매일시 중지",
+      //   to: "/product/productPause",
+      // },
       {
         _tag: "CSidebarNavItem",
         name: "작품 등록",
         to: "/product/productEnrollment",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Collapse",
-        to: "/base/collapses",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Forms",
-        to: "/base/forms",
-      },
-
-      {
-        _tag: "CSidebarNavItem",
-        name: "Pagination",
-        to: "/base/paginations",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Tables",
-        to: "/base/tables",
       },
     ],
   },
@@ -116,8 +93,8 @@ const _nav = [
       },
       {
         _tag: "CSidebarNavItem",
-        name: "CoreUI Brands",
-        to: "/icons/brands",
+        name: "정산",
+        to: "/statistics/calculate",
       },
     ],
   },

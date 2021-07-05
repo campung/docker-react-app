@@ -1,7 +1,5 @@
 import React from "react";
 
-const Tables = React.lazy(() => import("./views/product/tables/Tables"));
-
 const ProductSale = React.lazy(() =>
   import("./views/product/productSale/ProductSale")
 );
@@ -11,10 +9,6 @@ const ProductPause = React.lazy(() =>
 const ProductEnrollment = React.lazy(() =>
   import("./views/product/productEnrollment/ProductEnrollment")
 );
-const Collapses = React.lazy(() =>
-  import("./views/product/collapses/Collapses")
-);
-const BasicForms = React.lazy(() => import("./views/product/forms/BasicForms"));
 const Review = React.lazy(() => import("./views/review/review/Review"));
 const Charts = React.lazy(() => import("./views/charts/Charts"));
 const Dashboard = React.lazy(() => import("./views/dashboard/Dashboard"));
@@ -22,7 +16,9 @@ const Sales = React.lazy(() => import("./views/statistics/sales/Sales"));
 const CustomerInflow = React.lazy(() =>
   import("./views/statistics/customerInflow/CustomerInflow")
 );
-const Brands = React.lazy(() => import("./views/statistics/brands/Brands"));
+const Calculate = React.lazy(() =>
+  import("./views/statistics/calculate/Calculate")
+);
 
 const OrderList = React.lazy(() => import("./views/order/orderList/OrderList"));
 const OrderSendInfomation = React.lazy(() =>
@@ -31,9 +27,11 @@ const OrderSendInfomation = React.lazy(() =>
 
 const Users = React.lazy(() => import("./views/users/Users"));
 const User = React.lazy(() => import("./views/users/User"));
+// const Login = React.lazy(() => import("./views/pages/login/Login"));
 
 const routes = [
-  { path: "/", exact: true, name: "Home" },
+  // { path: "/login", exact: true, name: "login", component: Login },
+  { path: "/", name: "Home" },
   { path: "/dashboard", name: "Dashboard", component: Dashboard },
   { path: "/theme", name: "Theme", component: OrderList, exact: true },
   { path: "/order/orderList", name: "OrderList", component: OrderList }, //주문리스트
@@ -43,21 +41,16 @@ const routes = [
     component: OrderSendInfomation,
   }, //발송정보
   { path: "/product/productSale", name: "ProductSale", component: ProductSale },
-  {
-    path: "/product/productPause",
-    name: "ProductPause",
-    component: ProductPause,
-  },
+  // {
+  //   path: "/product/productPause",
+  //   name: "ProductPause",
+  //   component: ProductPause,
+  // },
   {
     path: "/product/productEnrollment",
     name: "ProductEnrollment",
     component: ProductEnrollment,
   },
-  { path: "/base/collapses", name: "Collapse", component: Collapses },
-  { path: "/base/forms", name: "Forms", component: BasicForms },
-
-  { path: "/base/tables", name: "Tables", component: Tables },
-
   { path: "/review", name: "Review", component: Review, exact: true },
 
   { path: "/charts", name: "Charts", component: Charts },
@@ -67,7 +60,7 @@ const routes = [
     name: "CustomerInflow",
     component: CustomerInflow,
   },
-  { path: "/icons/brands", name: "Brands", component: Brands },
+  { path: "/statistics/calculate", name: "Calculate", component: Calculate },
 
   { path: "/users", exact: true, name: "Users", component: Users },
   { path: "/users/:id", exact: true, name: "User Details", component: User },

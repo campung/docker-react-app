@@ -9,12 +9,11 @@ export class EditableTagGroup extends React.Component {
   state = {
     tags: [],
     inputVisible: false,
-    inputValue: ""
+    inputValue: "",
   };
 
   handleClose = (removedTag) => {
     const tags = this.state.tags.filter((tag) => tag !== removedTag);
-    console.log(tags);
     this.setState({ tags });
   };
 
@@ -32,11 +31,11 @@ export class EditableTagGroup extends React.Component {
     if (inputValue && tags.indexOf(inputValue) === -1) {
       tags = [...tags, inputValue];
     }
-    console.log(tags);
+    this.props.refreshFunction(tags);
     this.setState({
       tags,
       inputVisible: false,
-      inputValue: ""
+      inputValue: "",
     });
   };
 
@@ -77,7 +76,7 @@ export class EditableTagGroup extends React.Component {
               duration: 100,
               onComplete: (e) => {
                 e.target.style = "";
-              }
+              },
             }}
             leave={{ opacity: 0, width: 0, scale: 0, duration: 200 }}
             appear={false}
@@ -98,14 +97,18 @@ export class EditableTagGroup extends React.Component {
           />
         )}
         {!inputVisible && (
-        //   <Tag onClick={this.showInput} className="site-tag-plus">
-        //     <PlusOutlined /> 키워드 추가
-        //   </Tag>
-        // <Button onClick={this.showInput} type="primary">키워드 추가</Button>
-        <Input onChange={this.handleInputChange} onPressEnter={this.handleInputConfirm}style={{ width: '10%' }} placeholder="키워드 입력"/>
+          //   <Tag onClick={this.showInput} className="site-tag-plus">
+          //     <PlusOutlined /> 키워드 추가
+          //   </Tag>
+          // <Button onClick={this.showInput} type="primary">키워드 추가</Button>
+          <Input
+            onChange={this.handleInputChange}
+            onPressEnter={this.handleInputConfirm}
+            style={{ width: "10%" }}
+            placeholder="키워드 입력"
+          />
         )}
       </>
     );
   }
 }
-

@@ -11,7 +11,7 @@ import {
   CPagination
 } from '@coreui/react'
 
-import usersData from './UsersData'
+// import usersData from './UsersData'
 
 const getBadge = status => {
   switch (status) {
@@ -47,7 +47,7 @@ const Users = () => {
           </CCardHeader>
           <CCardBody>
           <CDataTable
-            items={usersData}
+            // items={usersData}
             fields={[
               { key: 'name', _classes: 'font-weight-bold' },
               'registered', 'role', 'status'
