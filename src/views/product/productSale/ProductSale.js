@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import { Button, Table } from "antd";
@@ -13,7 +14,9 @@ const ProductSale = (props) => {
   let history = useHistory();
 
   useEffect(() => {
-    if (user) {
+    if (user.storeData.name === "Error") {
+      history.push("/login");
+    } else {
       axios
         .get(
           `http://localhost:3065/v1/products?page=1&rows=10&store_id=${user.storeData.data.id}&district_code=1111054000`
@@ -21,8 +24,6 @@ const ProductSale = (props) => {
         .then((response) => {
           setProducts(response.data.data);
         });
-    } else {
-      history.push("/login");
     }
   }, [products]);
 
@@ -126,6 +127,7 @@ const ProductSale = (props) => {
               columns={columns}
               dataSource={products}
               scroll={{ x: 700 }}
+              key=""
             />
           </CCardBody>
         </CCard>

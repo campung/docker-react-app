@@ -14,7 +14,6 @@ export default function (SpecificComponent, option, adminRoute = null) {
       dispatch(auth()).then((response) => {
         //로그인 하지 않은 상태
         if (!response.payload) {
-          console.log(11, response);
           // props.history.push("/login");
 
           if (option === true) {
@@ -23,7 +22,6 @@ export default function (SpecificComponent, option, adminRoute = null) {
         } else {
           //로그인 한 상태
           if (response.payload) {
-            console.log(22, response);
             // props.history.push("/");
             history.push("/");
           } else {

@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { CCard, CButton } from "@coreui/react";
-import { Descriptions, Input, Select, Checkbox, PageHeader } from "antd";
-import Dropzone from "react-dropzone";
-import { PlusOutlined } from "@ant-design/icons";
+import { Descriptions, Input, Select, PageHeader } from "antd";
 import "antd/dist/antd.css";
 import { EditableTagGroup } from "../productSale/EditableTagGroup";
 import axios from "axios";
 import { Form, Button } from "antd";
 import { withRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Login from "src/views/pages/login/Login";
 
 const ProductEnrollment = (props) => {
   const user = useSelector((state) => state.user);
@@ -26,7 +23,6 @@ const ProductEnrollment = (props) => {
   const [Category, setCategory] = useState([]);
   const [Categories, setCategories] = useState([]);
   const [Content, setContent] = useState("");
-  const [Thumbnails, setThumbnails] = useState([]);
   const [Tags, setTags] = useState([]);
   const [Images, setImages] = useState([]);
 
@@ -46,33 +42,6 @@ const ProductEnrollment = (props) => {
   function onCategoryHandler(e) {
     setCategory(e);
   }
-
-  const dropHandler = (files) => {
-    let formData = new FormData();
-
-    const config = {
-      header: { "content-type": "multipart/form-data" },
-    };
-    formData.append("thumbnails", files[0]);
-    // setThumbnails(formData.append("thumbnails", files[0]));
-    setImages(formData);
-    //axios
-    // axios
-    //   .post("http://localhost:3065/v1/products", formData, config)
-    //   .then((response) => {
-    //     console.log(12, response);
-    //     setImages([...Images, response.data]);
-    //   });
-  };
-
-  const deleteHandler = (image) => {
-    const currentIndex = Thumbnails.indexOf(image);
-
-    let newImages = [...Thumbnails];
-    newImages.splice(currentIndex, 1);
-
-    setThumbnails(newImages);
-  };
 
   const updateTags = (newTags) => {
     setTags(newTags);
@@ -139,61 +108,6 @@ const ProductEnrollment = (props) => {
                       }}
                     />
                   </div>
-                  {/* <div style={{ display: "flex" }}>
-                  <Dropzone
-                    onDrop={(files) => {
-                      // console.log(files);
-                      setImages([...files]);
-                      console.log(11, ...Images);
-                    }}
-                  >
-                    {({ getRootProps, getInputProps }) => (
-                      <section>
-                        <div
-                          style={{
-                            width: 300,
-                            height: 240,
-                            border: "1px solid lightgray",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                          }}
-                          {...getRootProps()}
-                        >
-                          <input {...getInputProps()} />
-                          <PlusOutlined
-                            type="plus"
-                            style={{ fontSize: "3rem" }}
-                          />
-                        </div>
-                      </section>
-                    )}
-                  </Dropzone>
-
-                  <div
-                    style={{
-                      display: "flex",
-                      width: "350px",
-                      height: "300px",
-                      overflowX: "scroll",
-                    }}
-                  >
-                    {Images &&
-                      Images.map((image, index) => (
-                        <div onClick={() => deleteHandler(image)} key={index}>
-                          <img
-                            style={{
-                              minWidth: "300px",
-                              width: "300px",
-                              height: "240px",
-                            }}
-                            src={image}
-                            alt=""
-                          />
-                        </div>
-                      ))}
-                  </div>
-                </div> */}
                 </Descriptions.Item>
 
                 <br />

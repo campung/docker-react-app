@@ -50,14 +50,14 @@ const TheHeaderDropdown = (props) => {
         ) : (
           <div>1</div>
         )} */}
-        {/* {user && user.storeData.name === "Error" ? (
+        {user && user.storeData.name === "Error" ? (
           <Link to="/login">로그인을 해주세요</Link>
         ) : (
           <>
             <div className="c-avatar"></div>
             {user && user.storeData.data.name}
           </>
-        )} */}
+        )}
       </CDropdownToggle>
       {/* {user.storeData && user.storeData.data.name ? (
         <CDropdownMenu className="pt-0" placement="bottom-end">
