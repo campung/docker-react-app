@@ -1,26 +1,25 @@
 import React from "react";
 
-const ProductUpdate = ({
-  categories,
-  content,
-  cost_price,
-  sale_price,
-  tags,
-}) => {
-  console.log("categories", categories);
-  console.log("content", content);
-  console.log("cost_price", cost_price);
-  console.log("sale_price", sale_price);
-  console.log("tags", tags);
+const ProductUpdate = (props) => {
+  const { location } = props;
+  const { state } = location;
+  console.log(state);
   return (
     <>
       {/* <select>{categories}</select> */}
-      {/* <span>{content}</span>
+      <span>{state.record.content}</span>
       <br />
-      <span>{cost_price}</span>
-      <span>{sale_price}</span> */}
-      {/* <div>{tags}</div> */}
-      test
+      {/* <span>{state.cost_price}</span> */}
+      <span>{state.record.sale_price}</span>
+      {state.record.thumbnails.map((item) => {
+        const test = `${item.url}`;
+        console.log(test);
+        return (
+          <>
+            <img src={test} alt="" />
+          </>
+        );
+      })}
     </>
   );
 };

@@ -90,7 +90,7 @@ const ProductSale = (props) => {
       render: (record) => {
         return (
           <>
-            <Button type="primary" onClick={() => showModal(record.id)}>
+            {/* <Button type="primary" onClick={() => showModal(record.id)}>
               수정
             </Button>
             <Modal
@@ -106,7 +106,17 @@ const ProductSale = (props) => {
                 sale_price={productSalePrice}
                 tags={productTags}
               />
-            </Modal>
+            </Modal> */}
+            <Link
+              to={{
+                pathname: "/product/productUpdate",
+                state: {
+                  record,
+                },
+              }}
+            >
+              수정
+            </Link>
           </>
         );
       },
