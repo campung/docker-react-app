@@ -11,25 +11,28 @@ export default function (SpecificComponent, option, adminRoute = null) {
     const dispatch = useDispatch();
 
     useEffect(() => {
-      dispatch(auth()).then((response) => {
-        //로그인 하지 않은 상태
-        if (!response.payload) {
-          // props.history.push("/login");
-
-          if (option === true) {
+      dispatch(auth())
+        .then((response) => {
+          //로그인 하지 않은 상태
+          if (!response.payload) {
+            if (option === true) {
+              history.push("/login");
+            }
+          } else {
+            //로그인 한 상태
+            if (response.payload) {
+              history.push("/");
+            } else {
+              //로그인한 사람이 못들어가는 페이지 로그인,회원가입
+              if (option === false) history.push("/");
+            }
+          }
+        })
+        .catch((error) => {
+          if (error) {
             history.push("/login");
           }
-        } else {
-          //로그인 한 상태
-          if (response.payload) {
-            // props.history.push("/");
-            history.push("/");
-          } else {
-            //로그인한 사람이 못들어가는 페이지 로그인,회원가입
-            if (option === false) history.push("/");
-          }
-        }
-      });
+        });
     }, []);
     return <SpecificComponent {...props} user={user} />;
   }

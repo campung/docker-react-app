@@ -13,8 +13,10 @@ import ProgressBar from "./ProgressBar";
 import Switches from "./Switches";
 import Tabs from "./Tabs";
 import Tooltips from "./Tooltips";
+import ProductUpdate from "./productSale/ProductUpdate";
 
 export {
+  ProductUpdate,
   ProductSale,
   ProductPause,
   ProductEnrollment,

@@ -1,31 +1,54 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
-import { Button, Table } from "antd";
+import { Button, Table, Modal } from "antd";
 import { CCard, CCardBody, CCardHeader, CCol, CRow } from "@coreui/react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+import ProductUpdate from "./ProductUpdate";
 
 const ProductSale = (props) => {
   const user = useSelector((state) => state.user);
-  const [products, setProducts] = useState([]);
 
-  let history = useHistory();
+  const [products, setProducts] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [productCategory, setProductCategory] = useState([]);
+  const [productContent, setProductContent] = useState("");
+  const [productCostPrice, setProductCostPrice] = useState(0);
+  const [productSalePrice, setProductSalePrice] = useState(0);
+  const [productTags, setProductTags] = useState([]);
 
   useEffect(() => {
-    if (user.storeData.name === "Error") {
-      history.push("/login");
-    } else {
-      axios
-        .get(
-          `http://localhost:3065/v1/products?page=1&rows=10&store_id=${user.storeData.data.id}&district_code=1111054000`
-        )
-        .then((response) => {
-          setProducts(response.data.data);
-        });
-    }
-  }, [products]);
+    //district_code 변경해야함
+    axios
+      .get(
+        `/v1/products?page=1&rows=10&store_id=${user.storeData.id}&district_code=1111054000`
+      )
+      .then((response) => {
+        setProducts(response.data.data);
+      });
+  }, []);
+
+  //modal
+  const showModal = (item) => {
+    console.log("?", item);
+    setIsModalVisible(true);
+    axios.get(`/v1/products/${item}`).then((response) => {
+      setProductCategory(response.data.data.categories);
+      setProductContent(response.data.data.content);
+      setProductCostPrice(response.data.data.cost_price);
+      setProductSalePrice(response.data.data.sale_price);
+      setProductTags(response.data.data.tags);
+    });
+  };
+  //modal
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+  //modal
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
 
   //수정
   const onClickHandler = () => {};
@@ -37,19 +60,20 @@ const ProductSale = (props) => {
     };
 
     axios
-      .put(`http://localhost:3065/v1/products/${item}`, body)
-      .then((response) => console.log("성공", response));
+      .put(`/v1/products/${item}`, body)
+      .then((response) => console.log("판매시작 성공", response));
   };
 
   //판매중지
   const onStopHandler = (item) => {
+    console.log("zz", item);
     let body = {
       use_yn: "N",
     };
 
     axios
-      .put(`http://localhost:3065/v1/products/${item}`, body)
-      .then((response) => console.log("성공", response));
+      .put(`/v1/products/${item}`, body)
+      .then((response) => console.log("판매중지 성공", response));
   };
 
   // antd 시작
@@ -63,9 +87,29 @@ const ProductSale = (props) => {
       title: "상품수정",
       dataIndex: "",
       key: "x",
-      render: (record) => (
-        <Button onClick={() => onClickHandler(record)}>수정</Button>
-      ),
+      render: (record) => {
+        return (
+          <>
+            <Button type="primary" onClick={() => showModal(record.id)}>
+              수정
+            </Button>
+            <Modal
+              title="상품 수정"
+              visible={isModalVisible}
+              onOk={handleOk}
+              onCancel={handleCancel}
+            >
+              <ProductUpdate
+                categories={productCategory}
+                content={productContent}
+                cost_price={productCostPrice}
+                sale_price={productSalePrice}
+                tags={productTags}
+              />
+            </Modal>
+          </>
+        );
+      },
     },
     {
       title: "판매여부",
@@ -127,7 +171,6 @@ const ProductSale = (props) => {
               columns={columns}
               dataSource={products}
               scroll={{ x: 700 }}
-              key=""
             />
           </CCardBody>
         </CCard>

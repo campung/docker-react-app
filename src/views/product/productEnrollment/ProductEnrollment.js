@@ -7,11 +7,14 @@ import axios from "axios";
 import { Form, Button } from "antd";
 import { withRouter } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 const ProductEnrollment = (props) => {
   const user = useSelector((state) => state.user);
+
+  let history = useHistory();
   useEffect(() => {
-    axios.get("http://localhost:3065/v1/categories").then((response) => {
+    axios.get("/v1/categories").then((response) => {
       setCategories(response.data.data);
     });
   }, []);
@@ -61,30 +64,22 @@ const ProductEnrollment = (props) => {
     formData.append("cost_price", CostPrice);
     formData.append("sale_price", SalePrice);
     formData.append("category_ids", Category);
-    formData.append("store_id", user.storeData.data.id);
+    formData.append("store_id", user.storeData.id);
     formData.append("tag_titles", Tags);
-    console.log(Tags);
-    axios
-      .post("http://localhost:3065/v1/products", formData)
-      .then((response) => {
-        if (response.data.code === 201) {
-          alert("상품이 등록되었습니다.");
-          setTitle("");
-          setContent("");
-          setCostPrice("");
-          setSalePrice("");
-          setCategory("");
-          setTags([]);
-          // props.history.push("/productSale");
-        } else {
-          console.log("실패");
-        }
-      });
+
+    axios.post("/v1/products", formData).then((response) => {
+      if (response.data.code === 201) {
+        alert("상품이 등록되었습니다.");
+        history.push("/productSale");
+      } else {
+        console.log("실패");
+      }
+    });
   };
 
   return (
     <>
-      {user.storeData.data.name && user.storeData.data.name === "Error" ? (
+      {user && user.storeData.name === "Error" ? (
         <div>로그인을 해주세요.</div>
       ) : (
         <Form

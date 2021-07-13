@@ -11,12 +11,16 @@ import { applyMiddleware, createStore } from "redux";
 import promiseMiddleware from "redux-promise";
 import ReduxThunk from "redux-thunk";
 import Reducer from "./reducers";
+import axios from "axios";
 
 React.icons = icons;
 const createStoreWithMiddleware = applyMiddleware(
   promiseMiddleware,
   ReduxThunk
 )(createStore);
+
+axios.defaults.baseURL = "http://localhost:3065";
+axios.defaults.withCredentials = true;
 
 ReactDOM.render(
   <Provider

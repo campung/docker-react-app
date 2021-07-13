@@ -31,7 +31,7 @@ const Review = () => {
       title: "Action",
       dataIndex: "",
       key: "x",
-      render: () => <a>Delete</a>,
+      // render: () => <a>Delete</a>,
     },
   ];
 

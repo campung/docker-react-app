@@ -3,7 +3,7 @@ import { AUTH_USER, LOGIN_STORE } from "./types";
 
 export function loginUser(body) {
   const request = axios
-    .post("http://localhost:3065/v1/stores/signin", body, {
+    .post("/v1/stores/signin", body, {
       withCredentials: true,
     })
     .then((response) => response.data);
@@ -16,10 +16,10 @@ export function loginUser(body) {
 
 export function auth() {
   const request = axios
-    .post("http://localhost:3065/v1/stores/auth", {
+    .post("/v1/stores/auth", {
       withCredentials: true,
     })
-    .then((response) => response.data);
+    .then((response) => response.data.data);
 
   return {
     type: AUTH_USER,

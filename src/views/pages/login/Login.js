@@ -13,14 +13,16 @@ import {
   CInputGroupPrepend,
   CInputGroupText,
   CRow,
+  CImg,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../../actions/user_action";
-
+import { useHistory } from "react-router-dom";
 
 const Login = (props) => {
   const dispatch = useDispatch();
+  let history = useHistory();
 
   const [storeName, setStoreName] = useState("");
   const [password, setPassword] = useState("");
@@ -45,9 +47,8 @@ const Login = (props) => {
       // const accessToken = response.payload.data.access_token;
       // window.localStorage.setItem("accessToken", accessToken);
       // axios.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
-      console.log("response", response);
       if (response.payload.data) {
-        props.history.push("/");
+        history.push("/");
       } else {
         alert("로그인 실패");
       }
@@ -60,10 +61,17 @@ const Login = (props) => {
         <CRow className="justify-content-center">
           <CCol md="8">
             <CCardGroup>
-              <CCard className="p-4">
+              {/* text-white bg-primary py-5 d-md-down-none */}
+              <CCard className="p-4 bg-light">
                 <CCardBody>
                   <CForm>
-                    <h1>Login</h1>
+                    {/* <h1>Login</h1> */}
+                    <CImg
+                      src={"avatars/flowing_logo.svg"}
+                      // height={100}
+                      alt=""
+                      style={{ color: "black" }}
+                    />
                     <p className="text-muted">Sign In to your account</p>
                     <CInputGroup className="mb-3">
                       <CInputGroupPrepend>
@@ -73,7 +81,7 @@ const Login = (props) => {
                       </CInputGroupPrepend>
                       <CInput
                         type="text"
-                        placeholder="Username"
+                        placeholder="스토어명"
                         autoComplete="username"
                         value={storeName}
                         onChange={onNameHandler}
@@ -87,7 +95,7 @@ const Login = (props) => {
                       </CInputGroupPrepend>
                       <CInput
                         type="password"
-                        placeholder="Password"
+                        placeholder="비밀번호"
                         autoComplete="current-password"
                         value={password}
                         onChange={onPasswordHandler}
@@ -100,7 +108,7 @@ const Login = (props) => {
                           className="px-4"
                           onClick={onSubmitHandler}
                         >
-                          Login
+                          로그인
                         </CButton>
                       </CCol>
                       <CCol xs="6" className="text-right">
@@ -118,8 +126,8 @@ const Login = (props) => {
               >
                 <CCardBody className="text-center">
                   <div>
-                    <h2>Flowing</h2>
-                    <p>플로잉</p>
+                    <h1>Flowing</h1>
+
                     <Link to="/register">
                       <CButton
                         color="primary"
