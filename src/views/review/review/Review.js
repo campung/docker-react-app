@@ -74,7 +74,7 @@ const Review = () => {
       <CCol xs="12">
         <CCard>
           <CCardHeader>
-            <h1>판매중</h1>
+            <h1>댓글</h1>
           </CCardHeader>
           <CCardBody>
             {/* <Table

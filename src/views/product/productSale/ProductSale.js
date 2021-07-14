@@ -1,22 +1,15 @@
 import React, { useState, useEffect } from "react";
 import "antd/dist/antd.css";
-import { Button, Table, Modal } from "antd";
+import { Button, Table } from "antd";
 import { CCard, CCardBody, CCardHeader, CCol, CRow } from "@coreui/react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import ProductUpdate from "./ProductUpdate";
 
-const ProductSale = (props) => {
+const ProductSale = () => {
   const user = useSelector((state) => state.user);
 
   const [products, setProducts] = useState([]);
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const [productCategory, setProductCategory] = useState([]);
-  const [productContent, setProductContent] = useState("");
-  const [productCostPrice, setProductCostPrice] = useState(0);
-  const [productSalePrice, setProductSalePrice] = useState(0);
-  const [productTags, setProductTags] = useState([]);
 
   useEffect(() => {
     //district_code 변경해야함
@@ -28,30 +21,6 @@ const ProductSale = (props) => {
         setProducts(response.data.data);
       });
   }, []);
-
-  //modal
-  const showModal = (item) => {
-    console.log("?", item);
-    setIsModalVisible(true);
-    axios.get(`/v1/products/${item}`).then((response) => {
-      setProductCategory(response.data.data.categories);
-      setProductContent(response.data.data.content);
-      setProductCostPrice(response.data.data.cost_price);
-      setProductSalePrice(response.data.data.sale_price);
-      setProductTags(response.data.data.tags);
-    });
-  };
-  //modal
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-  //modal
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-
-  //수정
-  const onClickHandler = () => {};
 
   //판매시작
   const onStartHandler = (item) => {
@@ -90,23 +59,6 @@ const ProductSale = (props) => {
       render: (record) => {
         return (
           <>
-            {/* <Button type="primary" onClick={() => showModal(record.id)}>
-              수정
-            </Button>
-            <Modal
-              title="상품 수정"
-              visible={isModalVisible}
-              onOk={handleOk}
-              onCancel={handleCancel}
-            >
-              <ProductUpdate
-                categories={productCategory}
-                content={productContent}
-                cost_price={productCostPrice}
-                sale_price={productSalePrice}
-                tags={productTags}
-              />
-            </Modal> */}
             <Link
               to={{
                 pathname: "/product/productUpdate",
@@ -115,7 +67,7 @@ const ProductSale = (props) => {
                 },
               }}
             >
-              수정
+              <Button>수정</Button>
             </Link>
           </>
         );
@@ -165,18 +117,6 @@ const ProductSale = (props) => {
             <h1>판매중</h1>
           </CCardHeader>
           <CCardBody>
-            {/* <Table
-              columns={columns}
-              expandable={{
-                expandedRowRender: (record) => {
-                  console.log(9, record.id);
-                  <p style={{ margin: 0 }}>{record.id}</p>;
-                },
-                rowExpandable: (record) => record.id !== "Not Expandable",
-              }}
-              dataSource={products}
-            /> */}
-
             <Table
               columns={columns}
               dataSource={products}

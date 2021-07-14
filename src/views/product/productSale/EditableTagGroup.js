@@ -97,16 +97,11 @@ export class EditableTagGroup extends React.Component {
           />
         )}
         {!inputVisible && (
-          //   <Tag onClick={this.showInput} className="site-tag-plus">
-          //     <PlusOutlined /> 키워드 추가
-          //   </Tag>
-          // <Button onClick={this.showInput} type="primary">키워드 추가</Button>
-          <Input
-            onChange={this.handleInputChange}
-            onPressEnter={this.handleInputConfirm}
-            style={{ width: "10%" }}
-            placeholder="키워드 입력"
-          />
+          <>
+            <Tag onClick={this.showInput} className="site-tag-plus">
+              <PlusOutlined /> 키워드 추가
+            </Tag>
+          </>
         )}
       </>
     );

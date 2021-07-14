@@ -1,19 +1,16 @@
 import React from "react";
 import {
-  CBadge,
   CDropdown,
   CDropdownItem,
   CDropdownMenu,
   CDropdownToggle,
-  CImg,
 } from "@coreui/react";
 import CIcon from "@coreui/icons-react";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
-const TheHeaderDropdown = (props) => {
+const TheHeaderDropdown = () => {
   const user = useSelector((state) => state.user);
   let history = useHistory();
 
@@ -67,33 +64,14 @@ const TheHeaderDropdown = (props) => {
               >
                 <strong>Account</strong>
               </CDropdownItem>
-              <CDropdownItem>
-                <CIcon name="cil-bell" className="mfe-2" />
-                Updates
-                <CBadge color="info" className="mfs-auto">
-                  42
-                </CBadge>
-              </CDropdownItem>
-              <CDropdownItem>
-                <CIcon name="cil-envelope-open" className="mfe-2" />
-                Messages
-                <CBadge color="success" className="mfs-auto">
-                  42
-                </CBadge>
-              </CDropdownItem>
+
               <CDropdownItem>
                 <CIcon name="cil-task" className="mfe-2" />
-                상품
-                <CBadge color="success" className="mfs-auto">
-                  42
-                </CBadge>
+                <Link to="/product/productSale">상품</Link>
               </CDropdownItem>
               <CDropdownItem>
                 <CIcon name="cil-comment-square" className="mfe-2" />
-                댓글
-                <CBadge color="warning" className="mfs-auto">
-                  42
-                </CBadge>
+                <Link to="/review">댓글</Link>
               </CDropdownItem>
               <CDropdownItem
                 header
@@ -103,28 +81,16 @@ const TheHeaderDropdown = (props) => {
               >
                 <strong>Settings</strong>
               </CDropdownItem>
-              <CDropdownItem>
+              {/* <CDropdownItem>
                 <CIcon name="cil-user" className="mfe-2" />
                 Profile
-              </CDropdownItem>
-              <CDropdownItem>
-                <CIcon name="cil-settings" className="mfe-2" />
-                Settings
-              </CDropdownItem>
+              </CDropdownItem> */}
+
               <CDropdownItem>
                 <CIcon name="cil-credit-card" className="mfe-2" />
-                Payments
-                <CBadge color="secondary" className="mfs-auto">
-                  42
-                </CBadge>
+                정산
               </CDropdownItem>
-              <CDropdownItem>
-                <CIcon name="cil-file" className="mfe-2" />
-                Projects
-                <CBadge color="primary" className="mfs-auto">
-                  42
-                </CBadge>
-              </CDropdownItem>
+
               <CDropdownItem divider />
               <CDropdownItem onClick={onLogout}>
                 <CIcon name="cil-lock-locked" className="mfe-2" />

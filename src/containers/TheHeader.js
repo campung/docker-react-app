@@ -23,6 +23,7 @@ import {
   TheHeaderDropdownNotif,
   TheHeaderDropdownTasks,
 } from "./index";
+import { Button } from "antd";
 
 const TheHeader = () => {
   const dispatch = useDispatch();
@@ -57,34 +58,33 @@ const TheHeader = () => {
       <CHeaderBrand className="mx-auto d-lg-none" to="/">
         {/* <CIcon name="logo" height="48" alt="Logo" /> */}
         {/* 반응형 로고 */}
-        <CImg src={"avatars/flowing_logo.svg"} height={100} alt="" />
+        {/* <CImg src={"avatars/flowing_logo.svg"} height={100} alt="" /> */}
       </CHeaderBrand>
 
       <CHeaderNav className="d-md-down-none mr-auto">
         <CHeaderNavItem className="px-3">
           <CHeaderNavLink to="/dashboard">Dashboard</CHeaderNavLink>
         </CHeaderNavItem>
-        {/* <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/users">Users</CHeaderNavLink>
-        </CHeaderNavItem> */}
       </CHeaderNav>
 
-      <CHeaderNav className="px-3">
+      {/* 알림, 메시지 알림창 */}
+      <CHeaderNav className="px-5">
         {/* <TheHeaderDropdownNotif />
         <TheHeaderDropdownTasks />
         <TheHeaderDropdownMssg /> */}
+
         <TheHeaderDropdown />
       </CHeaderNav>
 
       <CSubheader className="px-3 justify-content-between">
-        <CBreadcrumbRouter
+        {/* <CBreadcrumbRouter
           className="border-0 c-subheader-nav m-0 px-0 px-md-3"
           routes={routes}
-        />
+        /> */}
         <div className="d-md-down-none mfe-2 c-subheader-nav">
-          <CLink className="c-subheader-nav-link" href="#">
+          {/* <CLink className="c-subheader-nav-link" href="#">
             <CIcon name="cil-speech" alt="Settings" />
-          </CLink>
+          </CLink> */}
           <CLink
             className="c-subheader-nav-link"
             aria-current="page"

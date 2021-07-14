@@ -69,12 +69,7 @@ const _nav = [
       },
     ],
   },
-  {
-    _tag: "CSidebarNavItem",
-    name: "Charts",
-    to: "/charts",
-    icon: "cil-chart-pie",
-  },
+
   {
     _tag: "CSidebarNavDropdown",
     name: "통계 및 정산",
@@ -95,32 +90,6 @@ const _nav = [
         _tag: "CSidebarNavItem",
         name: "정산",
         to: "/statistics/calculate",
-      },
-    ],
-  },
-
-  {
-    _tag: "CSidebarNavDivider",
-  },
-  // {
-  //   _tag: "CSidebarNavTitle",
-  //   _children: ["Extras"],
-  // },
-  {
-    _tag: "CSidebarNavDropdown",
-    name: "Pages",
-    route: "/pages",
-    icon: "cil-star",
-    _children: [
-      {
-        _tag: "CSidebarNavItem",
-        name: "Login",
-        to: "/login",
-      },
-      {
-        _tag: "CSidebarNavItem",
-        name: "Register",
-        to: "/register",
       },
     ],
   },

@@ -7,7 +7,7 @@ const ProductEnrollment = React.lazy(() =>
   import("./views/product/productEnrollment/ProductEnrollment")
 );
 const Review = React.lazy(() => import("./views/review/review/Review"));
-const Charts = React.lazy(() => import("./views/charts/Charts"));
+
 const Dashboard = React.lazy(() => import("./views/dashboard/Dashboard"));
 const Sales = React.lazy(() => import("./views/statistics/sales/Sales"));
 const CustomerInflow = React.lazy(() =>
@@ -41,7 +41,6 @@ const routes = [
     name: "ProductUpdate",
     component: ProductUpdate,
   },
-
   {
     path: "/product/productEnrollment",
     name: "ProductEnrollment",
@@ -49,7 +48,6 @@ const routes = [
   },
   { path: "/review", name: "Review", component: Review, exact: true },
 
-  { path: "/charts", name: "Charts", component: Charts },
   { path: "/statistics/sales", name: "Sales", component: Sales },
   {
     path: "/statistics/customerInflow",

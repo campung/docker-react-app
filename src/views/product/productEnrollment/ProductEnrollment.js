@@ -92,7 +92,7 @@ const ProductEnrollment = (props) => {
               <Descriptions bordered title="기본정보">
                 <Descriptions.Item label="상품 이미지">
                   <div>
-                    <label htmlFor="file">File</label>
+                    <label htmlFor="file">이미지 업로드</label>
                     <input
                       type="file"
                       multiple
