@@ -8,7 +8,7 @@ package-lock.json
 /coverage
 
 # production
-/build
+# /build
 
 # misc
 .eslintcache
@@ -26,4 +26,4 @@ yarn-error.log*
 
 /.env
 .env
-eastTest.pem
+testtest.pem
