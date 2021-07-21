@@ -12,7 +12,7 @@ import promiseMiddleware from "redux-promise";
 import ReduxThunk from "redux-thunk";
 import Reducer from "./reducers";
 import axios from "axios";
-
+//asd
 React.icons = icons;
 const createStoreWithMiddleware = applyMiddleware(
   promiseMiddleware,
