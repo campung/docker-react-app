@@ -94,7 +94,7 @@ const Login = () => {
               <CCard className="p-3">
                 <CCardBody>
                   <CForm>
-                    Logo
+                    Logo1
                     <CImg
                       src={"avatars/flowing_logo.svg"}
                       alt=""
